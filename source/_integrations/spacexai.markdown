@@ -1,6 +1,6 @@
 ---
 title: SpaceXAI
-description: Instructions on how to add Grok as a conversation agent using SpaceXAI
+description: Instructions on how to use Grok conversation and AI tasks with SpaceXAI
 ha_category:
   - AI
   - Voice
@@ -12,6 +12,7 @@ ha_codeowners:
 ha_domain: spacexai
 ha_integration_type: service
 ha_platforms:
+  - ai_task
   - conversation
 ha_quality_scale: bronze
 related:
@@ -64,7 +65,11 @@ Code interpreter:
 
 These tools run on the provider's service. They do not grant access to additional Home Assistant entities.
 
+For an AI task, **Model** selects the model for text and structured data. Image generation uses `grok-imagine-image-2.0` and does not have a model setting.
+
 ## Supported functionality
+
+### Conversation
 
 The integration creates a Grok conversation agent during setup. You can add more agents for different tasks. Use an agent in the Assist dialog or select it as the conversation agent for a [voice assistant](/voice_control/).
 
@@ -72,14 +77,27 @@ Grok can answer in any language supported by the selected model. If you allow it
 
 You can attach JPEG or PNG images and PDF documents to a conversation request. Grok receives the attachments from your latest message. The combined attachment size must not exceed 20 MiB.
 
+### AI tasks
+
+New accounts also receive a **Grok AI Task** entity. If you already added your account, open the SpaceXAI integration and select **Add AI task**. You can change an AI task's model through **Reconfigure**.
+
+Use the existing [AI Task actions](/integrations/ai_task/) in an automation or script:
+
+- **Generate data** returns text or structured data from your instructions. It accepts JPEG, PNG, and PDF attachments with a combined size of up to 20 MiB. For example, you can ask Grok to summarize a document or extract a list of items from an image.
+- **Generate image** creates an image from your instructions. To edit images, attach one to five JPEG or PNG images with a combined size of up to 20 MiB. Home Assistant makes the generated image available through its media system.
+
+Select your Grok AI task entity in the action. These tasks do not use the conversation agent's Assist access or provider tools.
+
 ## Data updates
 
-SpaceXAI is contacted when you send a conversation request. The integration does not poll in the background.
+SpaceXAI is contacted when you send a conversation or AI task request. The integration does not poll in the background.
 
 ## Known limitations
 
 - Attachments from earlier messages are not sent again with later requests.
 - Empty attachments and file types other than JPEG, PNG, and PDF are not supported.
+- Image editing accepts JPEG and PNG only, with no more than five images per request.
+- Image generation has no integration-specific aspect ratio or resolution setting.
 - The models available during setup depend on the signed-in account.
 
 ## Troubleshooting
