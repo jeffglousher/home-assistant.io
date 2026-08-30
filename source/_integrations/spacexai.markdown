@@ -100,18 +100,42 @@ To use them with Assist, go to {% my voice_assistants title="**Settings** > **Vo
 
 Speech-to-text converts recorded audio to text. Text-to-speech turns text into MP3 audio. The default voice is Eve, and the default language is English. You can select another supported voice through the `voice` option of the [text-to-speech action](/integrations/tts/).
 
+### Video and local media
+
+**Generate video** creates a video from a prompt and, optionally, a local image. It saves the result in Home Assistant's local media directory. Video generation is billable according to your xAI account's terms.
+
+**Publish media** creates a temporary link to an existing local image or video. It does not generate new content or copy files to a public directory. Both actions require administrator access.
+
+{% include integrations/actions.md %}
+
+## SpaceXAI automation examples
+
+You can use the video and media actions in automations or scripts. Each action returns data, so give it a response variable to use the result in later steps.
+
+{% include docs/paste_yaml_tip.md %}
+
+### Automation: create a landscape clip at sunset
+
+Use the **Generate video** action after a sun trigger to create a short landscape clip. The [video example](/actions/spacexai.generate_video/#automation-create-a-landscape-clip-at-sunset) shows how to save the action response. Each run generates a new billable video.
+
+### Automation: share a local video at a scheduled time
+
+Use the **Publish media** action after a time trigger to create a fresh link to a video that already exists. The [publishing example](/actions/spacexai.publish_media/#automation-show-a-local-video-link-at-a-scheduled-time) displays the link in a Home Assistant notification.
+
 ## Data updates
 
-SpaceXAI is contacted when you send a conversation, AI task, or speech request. The integration does not poll in the background.
+SpaceXAI is contacted when you send a conversation, AI task, speech, or video request. For video generation, the integration checks the submitted job until it finishes or times out. It does not poll in the background when idle. Publishing an existing local file does not contact SpaceXAI.
 
 ## Known limitations
 
 - Attachments from earlier messages are not sent again with later requests.
-- Empty attachments and file types other than JPEG, PNG, and PDF are not supported.
+- Conversation and AI data attachments must be nonempty JPEG, PNG, or PDF files.
 - Image editing accepts JPEG and PNG only, with no more than five images per request.
 - Image generation has no integration-specific aspect ratio or resolution setting.
 - Speech-to-text accepts recorded WAV/PCM or OGG/Opus audio up to 25 MiB. It does not provide live speech-to-speech conversations.
 - Choose from the supported speech languages and voices shown in Home Assistant. New provider options are not discovered automatically.
+- Generated videos require a configured local media directory and must not exceed 100 MiB. Source images for video generation must be local JPEG, PNG, or WebP files up to 20 MiB.
+- Media links expire after one hour. The saved files remain in local media until you remove them.
 - The models available during setup depend on the signed-in account.
 
 ## Troubleshooting
