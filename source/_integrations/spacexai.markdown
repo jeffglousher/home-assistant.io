@@ -146,7 +146,9 @@ If the code expires before you finish signing in, select **Submit** to request a
 
 ### Grok rejects the sign-in
 
-If your authorization expired or was revoked, remove the SpaceXAI integration and add it again to complete a new browser sign-in.
+If your authorization expired or was revoked, Home Assistant asks you to sign in again. Open the SpaceXAI integration, start reauthentication, and select **Submit** to request a new one-time code. Complete the browser sign-in using the same xAI account.
+
+Your conversation, AI task, and speech settings are preserved. Signing in with a different account is rejected so that an existing integration cannot silently switch accounts.
 
 ### Grok cannot access an entity
 
