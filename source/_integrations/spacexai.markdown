@@ -166,6 +166,8 @@ If your authorization expired or was revoked, Home Assistant asks you to sign in
 
 Your conversation, AI task, and speech settings are preserved. Signing in with a different account is rejected so that an existing integration cannot silently switch accounts.
 
+Home Assistant stores the authorization tokens returned by sign-in and refreshes them automatically when needed. You normally need to sign in again only if that authorization stops working. Your xAI password is entered on the provider's sign-in page, not in Home Assistant.
+
 ### Grok cannot access an entity
 
 Make sure you selected the Assist API during setup and [exposed the entity to Assist](/voice_control/voice_remote_expose_devices/).
