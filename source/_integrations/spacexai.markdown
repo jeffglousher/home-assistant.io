@@ -53,6 +53,8 @@ Control Home Assistant:
 
 To add another conversation agent, open SpaceXAI under {% my integrations title="**Settings** > **Devices & services**" %} and select **Add conversation agent**. Each agent has its own model, instructions, and tool settings.
 
+When adding an agent, **Name** identifies it in Home Assistant. The suggested name is `Grok`.
+
 To change an existing agent, open its menu and select **Reconfigure**. The following tools are available during initial setup, when adding an agent, and when reconfiguring one:
 
 {% configuration_basic %}
