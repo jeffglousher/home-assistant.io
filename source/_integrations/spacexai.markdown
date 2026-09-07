@@ -56,6 +56,8 @@ Control Home Assistant:
 
 To add another conversation agent, open SpaceXAI under {% my integrations title="**Settings** > **Devices & services**" %} and select **Add conversation agent**. Each agent has its own model, instructions, and tool settings.
 
+When adding an agent, **Name** identifies it in Home Assistant. The suggested name is `Grok`.
+
 To change an existing agent, open its menu and select **Reconfigure**. The following tools are available during initial setup, when adding an agent, and when reconfiguring one:
 
 {% configuration_basic %}
@@ -87,6 +89,8 @@ You can attach JPEG or PNG images and PDF documents to a conversation request. G
 
 New accounts also receive a **Grok AI Task** entity. If you already added your account, open the SpaceXAI integration and select **Add AI task**. You can change an AI task's model through **Reconfigure**.
 
+When adding an AI task, **Name** identifies it in Home Assistant. The suggested name is `Grok AI Task`.
+
 Use the existing [AI Task actions](/integrations/ai_task/) in an automation or script:
 
 - **Generate data** returns text or structured data from your instructions. It accepts JPEG, PNG, and PDF attachments with a combined size of up to 20 MiB. For example, you can ask Grok to summarize a document or extract a list of items from an image.
@@ -96,7 +100,9 @@ Select your Grok AI task entity in the action. These tasks do not use the conver
 
 ### Speech
 
-New accounts also receive **Grok Speech-to-text** and **Grok Text-to-speech** entities. For an existing account, open SpaceXAI and select **Add speech-to-text service** or **Add text-to-speech service**.
+New accounts also receive **Grok Speech-to-text** and **Grok TTS** entities. For an existing account, open SpaceXAI and select **Add speech-to-text service** or **Add text-to-speech service**.
+
+When adding a speech service, **Name** identifies it in Home Assistant. The suggested names are `Grok Speech-to-text` and `Grok TTS`.
 
 To use them with Assist, go to {% my voice_assistants title="**Settings** > **Voice assistants**" %}, open your assistant, and select the Grok entities for speech-to-text and text-to-speech. Adding the integration does not change your voice assistant automatically.
 
@@ -124,9 +130,13 @@ Use the **Generate video** action after a sun trigger to create a short landscap
 
 Use the **Publish media** action after a time trigger to create a fresh link to a video that already exists. The [publishing example](/actions/spacexai.publish_media/#automation-show-a-local-video-link-at-a-scheduled-time) displays the link in a Home Assistant notification.
 
+To set this up without editing YAML, import the following blueprint and select a local image or video and a notification time. SpaceXAI must be set up, and you must be an administrator. The blueprint only shares the existing file and creates a Home Assistant notification; it does not contact xAI or generate billable content. Anyone with the link can read the file for one hour if they can reach your Home Assistant.
+
+{% my blueprint_import badge blueprint_url="https://www.home-assistant.io/blueprints/integrations/spacexai_publish_media_notification.yaml" %}
+
 ## Data updates
 
-SpaceXAI is contacted when you send a conversation, AI task, speech, or video request. For video generation, the integration checks the submitted job until it finishes or times out. It does not poll in the background when idle. Publishing an existing local file does not contact SpaceXAI.
+SpaceXAI is contacted when you send a conversation, AI task, speech, or video request. For video generation, the integration checks the submitted job immediately, then waits five seconds after each pending response before checking again. It stops checking after ten minutes if the job has not finished. It does not poll in the background when idle. Publishing an existing local file does not contact SpaceXAI.
 
 ### Data sent to the provider
 
