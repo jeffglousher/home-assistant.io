@@ -85,6 +85,10 @@ If your authorization expired or was revoked, remove the SpaceXAI integration an
 
 Make sure you selected the Assist API during setup and [exposed the entity to Assist](/voice_control/voice_remote_expose_devices/).
 
+### The account is not allowed to use the service
+
+If xAI rejects a request because your account does not have access, check the account's subscription and access to the selected model. Signing in again does not grant additional permissions. Try again after access is restored, or select a model available to your account.
+
 ## Removing the integration
 
 This integration follows standard integration removal. No extra steps are required.
