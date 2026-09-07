@@ -49,11 +49,32 @@ Control Home Assistant:
   description: "The Home Assistant language model APIs that Grok can use. Select Assist to let Grok work with entities that are exposed to it."
 {% endconfiguration_basic %}
 
+## Configuration options
+
+To add another conversation agent, open SpaceXAI under {% my integrations title="**Settings** > **Devices & services**" %} and select **Add conversation agent**. Each agent has its own model, instructions, and tool settings.
+
+When adding an agent, **Name** identifies it in Home Assistant. The suggested name is `Grok`.
+
+To change an existing agent, open its menu and select **Reconfigure**. The following tools are available during initial setup, when adding an agent, and when reconfiguring one:
+
+{% configuration_basic %}
+Web search:
+  description: "Allow Grok to search the web. Disabled by default."
+X search:
+  description: "Allow Grok to search X. Disabled by default."
+Code interpreter:
+  description: "Allow Grok to run code using the provider's code interpreter. Disabled by default."
+{% endconfiguration_basic %}
+
+These tools run on the provider's service. They do not grant access to additional Home Assistant entities.
+
 ## Supported functionality
 
-The integration creates one Grok conversation agent. You can use it in the Assist dialog or select it as the conversation agent for a [voice assistant](/voice_control/).
+The integration creates a Grok conversation agent during setup. You can add more agents for different tasks. Use an agent in the Assist dialog or select it as the conversation agent for a [voice assistant](/voice_control/).
 
 Grok can answer in any language supported by the selected model. If you allow it to use the Assist API, it can also get information from Home Assistant and control exposed entities.
+
+You can attach JPEG or PNG images and PDF documents to a conversation request. Grok receives the attachments from your latest message. The combined attachment size must not exceed 20 MiB.
 
 ## Data updates
 
@@ -63,12 +84,14 @@ SpaceXAI is contacted when you send a conversation request. The integration does
 
 Each conversation request sends your message, conversation history, and configured instructions to xAI. If you enable Assist access, requests can also include the names and states of exposed entities and the results of Home Assistant actions. Template instructions can include other information you choose to put in the template.
 
+Conversation attachments are also sent to xAI. If you enable web search, X search, or the code interpreter, Grok can send queries or code derived from your request to those provider tools.
+
 Review your account's privacy controls, [xAI privacy information](https://x.ai/legal/privacy-policy), and [service terms](https://x.ai/legal/terms-of-service) before sending personal information. Data handling, retention, usage limits, and any charges depend on the provider's terms for your account. Removing the integration does not delete data already sent to xAI.
 
 ## Known limitations
 
-- The integration supports one Grok conversation agent for each signed-in account.
-- Conversation attachments are not supported.
+- Attachments from earlier messages are not sent again with later requests.
+- Empty attachments and file types other than JPEG, PNG, and PDF are not supported.
 - The models available during setup depend on the signed-in account.
 
 ## Troubleshooting
