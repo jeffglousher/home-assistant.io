@@ -30,13 +30,13 @@ The **SpaceXAI** {% term integration %} adds a Grok-powered conversation agent f
 
 This is a community-maintained integration, not an official xAI product.
 
-To let Grok provide information about your Home Assistant entities or control them, select the Assist API during setup. Grok can access only the entities that you [expose to Assist](/voice_control/voice_remote_expose_devices/).
+The Assist API is selected by default during setup. It lets Grok provide information about or control only the entities that you [expose to Assist](/voice_control/voice_remote_expose_devices/).
 
 This integration does not integrate with [sentence triggers](/docs/automation/trigger/#sentence-trigger).
 
 ## Prerequisites
 
-- An xAI account with access to Grok.
+- An xAI account with an eligible subscription that allows access to the Grok subscription API through browser sign-in.
 - A device with a web browser to complete sign-in.
 
 {% include integrations/config_flow.md %}
@@ -49,7 +49,7 @@ Model:
 Instructions:
   description: "Instructions for how Grok should respond. You can use a [Home Assistant template](/docs/configuration/templating/)."
 Control Home Assistant:
-  description: "The Home Assistant language model APIs that Grok can use. Select Assist to let Grok work with entities that are exposed to it."
+  description: "The Home Assistant language model APIs that Grok can use. Assist is selected by default. Clear this selection to disable Home Assistant tools."
 {% endconfiguration_basic %}
 
 ## Configuration options
@@ -184,7 +184,7 @@ Make sure you selected the Assist API during setup and [exposed the entity to As
 
 ### The account is not allowed to use the service
 
-If xAI rejects a request because your account does not have access, check the account's subscription and access to the selected model. Signing in again does not grant additional permissions. Try again after access is restored, or select a model available to your account.
+If xAI rejects a request because your account does not have access, check the account's subscription and access to the selected model. Signing in again does not grant additional permissions. Try again after access is restored.
 
 ## Removing the integration
 
