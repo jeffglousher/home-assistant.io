@@ -56,6 +56,8 @@ Control Home Assistant:
 
 To add another conversation agent, open SpaceXAI under {% my integrations title="**Settings** > **Devices & services**" %} and select **Add conversation agent**. Each agent has its own model, instructions, and tool settings.
 
+When adding an agent, **Name** identifies it in Home Assistant. The suggested name is `Grok`.
+
 To change an existing agent, open its menu and select **Reconfigure**. The following tools are available during initial setup, when adding an agent, and when reconfiguring one:
 
 {% configuration_basic %}
@@ -86,6 +88,8 @@ You can attach JPEG or PNG images and PDF documents to a conversation request. G
 ### AI tasks
 
 New accounts also receive a **Grok AI Task** entity. If you already added your account, open the SpaceXAI integration and select **Add AI task**. You can change an AI task's model through **Reconfigure**.
+
+When adding an AI task, **Name** identifies it in Home Assistant. The suggested name is `Grok AI Task`.
 
 Use the existing [AI Task actions](/integrations/ai_task/) in an automation or script:
 
