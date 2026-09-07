@@ -100,7 +100,7 @@ Select your Grok AI task entity in the action. These tasks do not use the conver
 
 ### Speech
 
-New accounts also receive **Grok Speech-to-text** and **Grok Text-to-speech** entities. For an existing account, open SpaceXAI and select **Add speech-to-text service** or **Add text-to-speech service**.
+New accounts also receive **Grok Speech-to-text** and **Grok TTS** entities. For an existing account, open SpaceXAI and select **Add speech-to-text service** or **Add text-to-speech service**.
 
 When adding a speech service, **Name** identifies it in Home Assistant. The suggested names are `Grok Speech-to-text` and `Grok TTS`.
 
