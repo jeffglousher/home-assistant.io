@@ -85,6 +85,8 @@ You can attach JPEG or PNG images and PDF documents to a conversation request. G
 
 New accounts also receive a **Grok AI Task** entity. If you already added your account, open the SpaceXAI integration and select **Add AI task**. You can change an AI task's model through **Reconfigure**.
 
+When adding an AI task, **Name** identifies it in Home Assistant. The suggested name is `Grok AI Task`.
+
 Use the existing [AI Task actions](/integrations/ai_task/) in an automation or script:
 
 - **Generate data** returns text or structured data from your instructions. It accepts JPEG, PNG, and PDF attachments with a combined size of up to 20 MiB. For example, you can ask Grok to summarize a document or extract a list of items from an image.
