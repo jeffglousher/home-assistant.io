@@ -102,6 +102,8 @@ Select your Grok AI task entity in the action. These tasks do not use the conver
 
 New accounts also receive **Grok Speech-to-text** and **Grok Text-to-speech** entities. For an existing account, open SpaceXAI and select **Add speech-to-text service** or **Add text-to-speech service**.
 
+When adding a speech service, **Name** identifies it in Home Assistant. The suggested names are `Grok Speech-to-text` and `Grok TTS`.
+
 To use them with Assist, go to {% my voice_assistants title="**Settings** > **Voice assistants**" %}, open your assistant, and select the Grok entities for speech-to-text and text-to-speech. Adding the integration does not change your voice assistant automatically.
 
 Speech-to-text converts recorded audio to text. Text-to-speech turns text into MP3 audio. The default voice is Eve, and the default language is English. You can select another supported voice through the `voice` option of the [text-to-speech action](/integrations/tts/).
