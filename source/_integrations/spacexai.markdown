@@ -138,6 +138,8 @@ AI tasks send their instructions and attached files to xAI. Image editing sends 
 
 Speech-to-text sends the recorded audio to xAI. Text-to-speech sends the text you ask it to speak.
 
+Video generation sends your prompt and any selected source image to xAI. Publishing an existing local file does not send it to xAI. Anyone who has a generated media link and can reach your Home Assistant can read the file until the link expires. Treat these links as temporary access to your media.
+
 Review your account's privacy controls, [xAI privacy information](https://x.ai/legal/privacy-policy), and [service terms](https://x.ai/legal/terms-of-service) before sending personal information. Data handling, retention, usage limits, and any charges depend on the provider's terms for your account. Removing the integration does not delete data already sent to xAI.
 
 ## Known limitations
