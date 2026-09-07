@@ -108,9 +108,35 @@ To use them with Assist, go to {% my voice_assistants title="**Settings** > **Vo
 
 Speech-to-text converts recorded audio to text. Text-to-speech turns text into MP3 audio. The default voice is Eve, and the default language is English. You can select another supported voice through the `voice` option of the [text-to-speech action](/integrations/tts/).
 
+### Video and local media
+
+**Generate video** creates a video from a prompt and, optionally, a local image. It saves the result in Home Assistant's local media directory. Video generation is billable according to your xAI account's terms.
+
+**Publish media** creates a temporary link to an existing local image or video. It does not generate new content or copy files to a public directory. Both actions require administrator access.
+
+{% include integrations/actions.md %}
+
+## SpaceXAI automation examples
+
+You can use the video and media actions in automations or scripts. Each action returns data, so give it a response variable to use the result in later steps.
+
+{% include docs/paste_yaml_tip.md %}
+
+### Automation: create a landscape clip at sunset
+
+Use the **Generate video** action after a sun trigger to create a short landscape clip. The [video example](/actions/spacexai.generate_video/#automation-create-a-landscape-clip-at-sunset) shows how to save the action response. Each run generates a new billable video.
+
+### Automation: share a local video at a scheduled time
+
+Use the **Publish media** action after a time trigger to create a fresh link to a video that already exists. The [publishing example](/actions/spacexai.publish_media/#automation-show-a-local-video-link-at-a-scheduled-time) displays the link in a Home Assistant notification.
+
+To set this up without editing YAML, import the following blueprint and select a local image or video and a notification time. SpaceXAI must be set up, and you must be an administrator. The blueprint only shares the existing file and creates a Home Assistant notification; it does not contact xAI or generate billable content. Anyone with the link can read the file for one hour if they can reach your Home Assistant.
+
+{% my blueprint_import badge blueprint_url="https://www.home-assistant.io/blueprints/integrations/spacexai_publish_media_notification.yaml" %}
+
 ## Data updates
 
-SpaceXAI is contacted when you send a conversation, AI task, or speech request. The integration does not poll in the background.
+SpaceXAI is contacted when you send a conversation, AI task, speech, or video request. For video generation, the integration checks the submitted job immediately, then waits five seconds after each pending response before checking again. It stops checking after ten minutes if the job has not finished. It does not poll in the background when idle. Publishing an existing local file does not contact SpaceXAI.
 
 ### Data sent to the provider
 
@@ -122,16 +148,20 @@ AI tasks send their instructions and attached files to xAI. Image editing sends 
 
 Speech-to-text sends the recorded audio to xAI. Text-to-speech sends the text you ask it to speak.
 
+Video generation sends your prompt and any selected source image to xAI. Publishing an existing local file does not send it to xAI. Anyone who has a generated media link and can reach your Home Assistant can read the file until the link expires. Treat these links as temporary access to your media.
+
 Review your account's privacy controls, [xAI privacy information](https://x.ai/legal/privacy-policy), and [service terms](https://x.ai/legal/terms-of-service) before sending personal information. Data handling, retention, usage limits, and any charges depend on the provider's terms for your account. Removing the integration does not delete data already sent to xAI.
 
 ## Known limitations
 
 - Attachments from earlier messages are not sent again with later requests.
-- Empty attachments and file types other than JPEG, PNG, and PDF are not supported.
+- Conversation and AI data attachments must be nonempty JPEG, PNG, or PDF files.
 - Image editing accepts JPEG and PNG only, with no more than five images per request.
 - Image generation has no integration-specific aspect ratio or resolution setting.
 - Speech-to-text accepts recorded WAV/PCM or OGG/Opus audio up to 25 MiB. It does not provide live speech-to-speech conversations.
 - Choose from the supported speech languages and voices shown in Home Assistant. New provider options are not discovered automatically.
+- Generated videos require a configured local media directory and must not exceed 100 MiB. Source images for video generation must be local JPEG, PNG, or WebP files up to 20 MiB.
+- Media links expire after one hour. The saved files remain in local media until you remove them.
 - The models available during setup depend on the signed-in account.
 
 ## Troubleshooting
