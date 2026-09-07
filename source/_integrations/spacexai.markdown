@@ -56,6 +56,8 @@ Control Home Assistant:
 
 To add another conversation agent, open SpaceXAI under {% my integrations title="**Settings** > **Devices & services**" %} and select **Add conversation agent**. Each agent has its own model, instructions, and tool settings.
 
+When adding an agent, **Name** identifies it in Home Assistant. The suggested name is `Grok`.
+
 To change an existing agent, open its menu and select **Reconfigure**. The following tools are available during initial setup, when adding an agent, and when reconfiguring one:
 
 {% configuration_basic %}
@@ -87,6 +89,8 @@ You can attach JPEG or PNG images and PDF documents to a conversation request. G
 
 New accounts also receive a **Grok AI Task** entity. If you already added your account, open the SpaceXAI integration and select **Add AI task**. You can change an AI task's model through **Reconfigure**.
 
+When adding an AI task, **Name** identifies it in Home Assistant. The suggested name is `Grok AI Task`.
+
 Use the existing [AI Task actions](/integrations/ai_task/) in an automation or script:
 
 - **Generate data** returns text or structured data from your instructions. It accepts JPEG, PNG, and PDF attachments with a combined size of up to 20 MiB. For example, you can ask Grok to summarize a document or extract a list of items from an image.
@@ -97,6 +101,8 @@ Select your Grok AI task entity in the action. These tasks do not use the conver
 ### Speech
 
 New accounts also receive **Grok Speech-to-text** and **Grok Text-to-speech** entities. For an existing account, open SpaceXAI and select **Add speech-to-text service** or **Add text-to-speech service**.
+
+When adding a speech service, **Name** identifies it in Home Assistant. The suggested names are `Grok Speech-to-text` and `Grok TTS`.
 
 To use them with Assist, go to {% my voice_assistants title="**Settings** > **Voice assistants**" %}, open your assistant, and select the Grok entities for speech-to-text and text-to-speech. Adding the integration does not change your voice assistant automatically.
 
