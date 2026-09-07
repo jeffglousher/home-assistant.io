@@ -114,6 +114,8 @@ Conversation attachments are also sent to xAI. If you enable web search, X searc
 
 AI tasks send their instructions and attached files to xAI. Image editing sends each selected source image to the provider.
 
+Speech-to-text sends the recorded audio to xAI. Text-to-speech sends the text you ask it to speak.
+
 Review your account's privacy controls, [xAI privacy information](https://x.ai/legal/privacy-policy), and [service terms](https://x.ai/legal/terms-of-service) before sending personal information. Data handling, retention, usage limits, and any charges depend on the provider's terms for your account. Removing the integration does not delete data already sent to xAI.
 
 ## Known limitations
