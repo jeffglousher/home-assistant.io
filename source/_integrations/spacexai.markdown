@@ -82,6 +82,8 @@ SpaceXAI is contacted when you send a conversation request. The integration does
 
 Each request sends your message, conversation history, and configured instructions to xAI. If you enable Assist access, requests can also include the names and states of exposed entities and the results of Home Assistant actions. Template instructions can include other information you choose to put in the template.
 
+Conversation attachments are also sent to xAI. If you enable web search, X search, or the code interpreter, Grok can send queries or code derived from your request to those provider tools.
+
 Review your account's privacy controls, [xAI privacy information](https://x.ai/legal/privacy-policy), and [service terms](https://x.ai/legal/terms-of-service) before sending personal information. Data handling, retention, usage limits, and any charges depend on the provider's terms for your account. Removing the integration does not delete data already sent to xAI.
 
 ## Known limitations
