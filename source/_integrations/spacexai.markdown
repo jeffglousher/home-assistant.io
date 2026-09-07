@@ -1,6 +1,6 @@
 ---
 title: SpaceXAI
-description: Instructions on how to use Grok conversation and AI tasks with SpaceXAI
+description: Instructions on how to use Grok conversation, AI tasks, and speech with SpaceXAI
 ha_category:
   - AI
   - Voice
@@ -14,6 +14,8 @@ ha_integration_type: service
 ha_platforms:
   - ai_task
   - conversation
+  - stt
+  - tts
 ha_quality_scale: bronze
 related:
   - docs: /voice_control/voice_remote_expose_devices/
@@ -71,6 +73,8 @@ These tools run on the provider's service. They do not grant access to additiona
 
 For an AI task, **Model** selects the model for text and structured data. Image generation uses `grok-imagine-image-2.0` and does not have a model setting.
 
+For text-to-speech, **Speed** controls how quickly the voice speaks. It ranges from 0.7 to 1.5, with a default of 1.0. Speech-to-text has no additional configuration settings.
+
 ## Supported functionality
 
 ### Conversation
@@ -94,9 +98,19 @@ Use the existing [AI Task actions](/integrations/ai_task/) in an automation or s
 
 Select your Grok AI task entity in the action. These tasks do not use the conversation agent's Assist access or provider tools.
 
+### Speech
+
+New accounts also receive **Grok Speech-to-text** and **Grok TTS** entities. For an existing account, open SpaceXAI and select **Add speech-to-text service** or **Add text-to-speech service**.
+
+When adding a speech service, **Name** identifies it in Home Assistant. The suggested names are `Grok Speech-to-text` and `Grok TTS`.
+
+To use them with Assist, go to {% my voice_assistants title="**Settings** > **Voice assistants**" %}, open your assistant, and select the Grok entities for speech-to-text and text-to-speech. Adding the integration does not change your voice assistant automatically.
+
+Speech-to-text converts recorded audio to text. Text-to-speech turns text into MP3 audio. The default voice is Eve, and the default language is English. You can select another supported voice through the `voice` option of the [text-to-speech action](/integrations/tts/).
+
 ## Data updates
 
-SpaceXAI is contacted when you send a conversation or AI task request. The integration does not poll in the background.
+SpaceXAI is contacted when you send a conversation, AI task, or speech request. The integration does not poll in the background.
 
 ### Data sent to the provider
 
@@ -106,6 +120,8 @@ Conversation attachments are also sent to xAI. If you enable web search, X searc
 
 AI tasks send their instructions and attached files to xAI. Image editing sends each selected source image to the provider.
 
+Speech-to-text sends the recorded audio to xAI. Text-to-speech sends the text you ask it to speak.
+
 Review your account's privacy controls, [xAI privacy information](https://x.ai/legal/privacy-policy), and [service terms](https://x.ai/legal/terms-of-service) before sending personal information. Data handling, retention, usage limits, and any charges depend on the provider's terms for your account. Removing the integration does not delete data already sent to xAI.
 
 ## Known limitations
@@ -114,6 +130,8 @@ Review your account's privacy controls, [xAI privacy information](https://x.ai/l
 - Empty attachments and file types other than JPEG, PNG, and PDF are not supported.
 - Image editing accepts JPEG and PNG only, with no more than five images per request.
 - Image generation has no integration-specific aspect ratio or resolution setting.
+- Speech-to-text accepts recorded WAV/PCM or OGG/Opus audio up to 25 MiB. It does not provide live speech-to-speech conversations.
+- Choose from the supported speech languages and voices shown in Home Assistant. New provider options are not discovered automatically.
 - The models available during setup depend on the signed-in account.
 
 ## Troubleshooting
