@@ -130,9 +130,13 @@ Use the **Generate video** action after a sun trigger to create a short landscap
 
 Use the **Publish media** action after a time trigger to create a fresh link to a video that already exists. The [publishing example](/actions/spacexai.publish_media/#automation-show-a-local-video-link-at-a-scheduled-time) displays the link in a Home Assistant notification.
 
+To set this up without editing YAML, import the following blueprint and select a local image or video and a notification time. SpaceXAI must be set up, and you must be an administrator. The blueprint only shares the existing file and creates a Home Assistant notification; it does not contact xAI or generate billable content. Anyone with the link can read the file for one hour if they can reach your Home Assistant.
+
+{% my blueprint_import badge blueprint_url="https://www.home-assistant.io/blueprints/integrations/spacexai_publish_media_notification.yaml" %}
+
 ## Data updates
 
-SpaceXAI is contacted when you send a conversation, AI task, speech, or video request. For video generation, the integration checks the submitted job until it finishes or times out. It does not poll in the background when idle. Publishing an existing local file does not contact SpaceXAI.
+SpaceXAI is contacted when you send a conversation, AI task, speech, or video request. For video generation, the integration checks the submitted job immediately, then waits five seconds after each pending response before checking again. It stops checking after ten minutes if the job has not finished. It does not poll in the background when idle. Publishing an existing local file does not contact SpaceXAI.
 
 ### Data sent to the provider
 
